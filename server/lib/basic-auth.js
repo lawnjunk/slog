@@ -24,7 +24,6 @@ module.exports = function(req, res, next){
   firebase.auth().signInWithEmailAndPassword(email, password)
   .then(user => {
     req.user = user;
-    console.log('user', user.uid);
     return admin.auth().createCustomToken(user.uid)
   })
   .then(token => {
