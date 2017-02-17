@@ -2,16 +2,18 @@
 
 require('./mock-env.js')
 
-let expect = require('expect')
 let $ = require('superagent')
+let expect = require('expect')
+let firebase = require('firebase')
 
 let URL = `http://localhost:${process.env.PORT}`
-let {serverStart, serverStop} = require('./server-control.js')
+  let {serverStart, serverStop} = require('./server-control.js')
 
 let TOKEN
+let TEMP_PAGE_RESPONSE
 let TEMP_PAGE = {
   title: 'example',
-  data: '# md text\n> blockquote\n* a good point',
+  content: '# md text\n> blockquote\n* a good point',
 }
 
 describe('testing page router', () => {
@@ -50,10 +52,21 @@ describe('testing page router', () => {
     .catch(done)
   })
 
+  it('status should eq 400', (done) => {
+    $.post(`${URL}/api/pages`)
+    .set('Authorization', `Bearer ${TOKEN}`)
+    .send({})
+    .then(done)
+    .catch(res => {
+      expect(res.status).toEqual(400);
+      done();
+    })
+    .catch(done)
+  })
+
   describe('GET /api/pages', () => {
     it('shoul return an array of page data', (done) => {
       $.get(`${URL}/api/pages`)
-      .set('Authorization', `Bearer ${TOKEN}`)
       .then( res => {
         expect(res.status).toEqual(200)
         expect(Array.isArray(res.body)).toBeTruthy();
@@ -62,8 +75,28 @@ describe('testing page router', () => {
       .catch(done)
     })
   })
+
+  describe('DELETE /api/pages/:id', () => {
+    before(done => {
+      $.post(`${URL}/api/pages`)
+      .set('Authorization', `Bearer ${TOKEN}`)
+      .send(TEMP_PAGE)
+      .then(res => {
+        console.log('lulwat', res.body)
+        TEMP_PAGE_RESPONSE = res.body
+        done()
+      })
+      .catch(done)
+    })
+
+    it.only('expect status to eq 204', (done) => {
+      $.delete(`${URL}/api/pages/${TEMP_PAGE_RESPONSE.id}`)
+      .set('Authorization', `Bearer ${TOKEN}`)
+      .then(res => {
+        expect(res.status).toEqual(204)
+        done()
+      })
+      .catch(done)
+    })
+  })
 })
-
-
-
-

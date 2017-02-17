@@ -3,35 +3,25 @@
 const uuid = require('uuid')
 const {Router} = require('express')
 const jsonParser = require('body-parser').json()
-const pageRouter = module.exports = new Router()
 const bearerAuth = require('../lib/bearer-auth.js')
-const firebase = require('firebase')
+let Page = require('../model/page.js')
+
+const pageRouter = module.exports = new Router()
 
 pageRouter.post('/api/pages', bearerAuth, jsonParser, (req, res, next) => {
-  req.body.id = uuid.v1()
-  console.log('req.body', req.body)
-
-  firebase.database().ref('/pages')
-  .child(req.body.id).set(req.body)
-  .then(() => {
-    return firebase.auth().signOut()
-  })
-  .then(() => res.json(req.body))
-  .catch(err => {
-    firebase.auth().signOut()
-    next(err)
-  })
+  new Page(req.body).save()
+  .then(page => res.json(page))
+  .catch(next)
 })
 
 pageRouter.get('/api/pages', (req, res, next) => {
-  console.log('booyea')
-  firebase.database().ref('/pages').once('value')
-  .then(snapShot => {
-    let data = snapShot.val();
-    data = Object.keys(data).map(key => data[key])
-    console.log('snapshot', data)
-    res.json(data)
-  })
+  Page.fetchAll()
+  .then(pages => res.json(pages))
   .catch(next);
+})
 
+pageRouter.delete('/api/pages/:id', bearerAuth, (req, res, next) => {
+  Page.findByIdAndDelete(req.params.id)
+  .then(() => res.sendStatus(204))
+  .catch(next)
 })
