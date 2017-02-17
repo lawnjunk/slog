@@ -1,55 +1,68 @@
-'use strict';
+'use strict'
 
-require('./mock-env.js');
+require('./mock-env.js')
 
-let expect = require('expect');
-let $ = require('superagent');
+let expect = require('expect')
+let $ = require('superagent')
 
-let URL = `http://localhost:${process.env.PORT}`;
-let {serverStart, serverStop} = require('./server-control.js');
+let URL = `http://localhost:${process.env.PORT}`
+let {serverStart, serverStop} = require('./server-control.js')
 
-let TOKEN;
+let TOKEN
 let TEMP_PAGE = {
   title: 'example',
   data: '# md text\n> blockquote\n* a good point',
-};
+}
 
 describe('testing page router', () => {
-  before(serverStart);
-  after(serverStop);
+  before(serverStart)
+  after(serverStop)
 
   before(done => {
     $.get(`${URL}/api/login`)
     .auth('slugbyte@slugbyte.com', 'helloworld')
     .then(res => {
-      TOKEN = res.text;
-      done();
+      TOKEN = res.text
+      done()
     })
-    .catch(done);
-  });
+    .catch(done)
+  })
 
   it('res should contain a page', (done) => {
-    $.post(`${URL}/api/page`)
+    $.post(`${URL}/api/pages`)
     .set('Authorization', `Bearer ${TOKEN}`)
     .send(TEMP_PAGE)
     .then(res => {
-      expect(res.status).toEqual(200);
-      done();
+      expect(res.status).toEqual(200)
+      done()
     })
-    .catch(done);
-  });
+    .catch(done)
+  })
 
   it('status should eq 401', (done) => {
-    $.post(`${URL}/api/page`)
+    $.post(`${URL}/api/pages`)
     .send(TEMP_PAGE)
     .then(done)
     .catch(res => {
-      expect(res.status).toEqual(401);
-      done();
+      expect(res.status).toEqual(401)
+      done()
     })
-    .catch(done);
-  });
-});
+    .catch(done)
+  })
+
+  describe('GET /api/pages', () => {
+    it('shoul return an array of page data', (done) => {
+      $.get(`${URL}/api/pages`)
+      .set('Authorization', `Bearer ${TOKEN}`)
+      .then( res => {
+        expect(res.status).toEqual(200)
+        expect(Array.isArray(res.body)).toBeTruthy();
+        done();
+      })
+      .catch(done)
+    })
+  })
+})
 
 
 

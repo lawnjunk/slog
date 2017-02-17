@@ -6,7 +6,6 @@ let server
 module.exports = exports = {}
 
 exports.serverStart = (done) => {
-  console.log('wat')
   if(!app.isOn)
     return server = app.listen(process.env.PORT, (...args) => {
       app.isOn = true

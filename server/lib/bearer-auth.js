@@ -18,7 +18,6 @@ module.exports = (req, res, next) => {
     next();
   })
   .catch(err => {
-    console.log('fusldfkjlksdjfsdjfklj')
     next(error(401, err.message))
   });
 }
