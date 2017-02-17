@@ -18,11 +18,20 @@ describe('testing auth router', function(){
     $.get(`${URL}/api/login`)
     .auth('slugbyte@slugbyte.com', 'helloworld')
     .then(res => {
-      console.log(res.text);
       expect(res.status).toEqual(200);
       expect(res.text).toExist();
       done();
     })
     .catch(done)
+
+    $.get(`${URL}/api/login`)
+    .then(done);
+    .catch(res => {
+      expect(res.status).toEqual(401);
+      done()
+    })
+    .catch(done)
+
+
   });
 });
