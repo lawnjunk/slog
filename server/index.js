@@ -24,3 +24,10 @@ app.use(cors());
 app.use(morgan(process.env.LOG_FORMAT));
 app.use(require('./route/page.js'));
 app.use(require('./route/auth.js'));
+
+app.use((err, req, res, next) => {
+  console.error(res.message);
+  if(err.status)
+    return res.sendStatus(err.status)
+  res.sendStatus(500);
+})
