@@ -25,3 +25,10 @@ pageRouter.delete('/api/pages/:id', bearerAuth, (req, res, next) => {
   .then(() => res.sendStatus(204))
   .catch(next)
 })
+
+pageRouter.put('/api/pages/:id', bearerAuth, jsonParser, (req, res, next) => {
+  req.body.id = req.params.id
+  new Page(req.body).save()
+  .then(page => res.json(page))
+  .catch(next)
+})

@@ -5,13 +5,13 @@ let firebase = require('firebase')
 let error = require('http-errors')
 
 const Page = module.exports = function(opts){
-  // computed props
-  this.id = uuid.v1()
+  // computed / optional props
+  this.showInNav = opts.showInNav || false
+  this.id = opts.id || uuid.v1()
+
   // required props
   this.title = opts.title
   this.content = opts.content
-  // optional props
-  if (opts.showInNav) this.showInNav = opts.showInNav
 }
 
 // Static Methods

@@ -89,11 +89,39 @@ describe('testing page router', () => {
       .catch(done)
     })
 
-    it.only('expect status to eq 204', (done) => {
+    it('expect status to eq 204', (done) => {
       $.delete(`${URL}/api/pages/${TEMP_PAGE_RESPONSE.id}`)
       .set('Authorization', `Bearer ${TOKEN}`)
       .then(res => {
         expect(res.status).toEqual(204)
+        done()
+      })
+      .catch(done)
+    })
+  })
+
+  describe('PUT /api/pages/:id', () => {
+    before(done => {
+      $.post(`${URL}/api/pages`)
+      .set('Authorization', `Bearer ${TOKEN}`)
+      .send(TEMP_PAGE)
+      .then(res => {
+        console.log('lulwat', res.body)
+        TEMP_PAGE_RESPONSE = res.body
+        done()
+      })
+      .catch(done)
+    })
+
+    it('expect status to eq 200', (done) => {
+      let sent = TEMP_PAGE_RESPONSE
+      sent.title = 'lulwat'
+      $.put(`${URL}/api/pages/${TEMP_PAGE_RESPONSE.id}`)
+      .set('Authorization', `Bearer ${TOKEN}`)
+      .send(sent)
+      .then(res => {
+        expect(res.status).toEqual(200)
+        expect(res.body.title).toEqual('lulwat')
         done()
       })
       .catch(done)

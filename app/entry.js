@@ -8,13 +8,18 @@ const marked = require('angular-marked')
 
 angular.module('demoApp', [uiRouter, marked])
 .config(['$stateProvider', '$urlRouterProvider', function($stateProvider, $urlRouterProver){
-  $urlRouterProver.when('', '/')
+  $urlRouterProver.when('', '/admin')
 
   let routes = [
     {
-      name: 'home',
-      url: '/',
-      template: '<landing> </landing>',
+      name: 'admin',
+      url: '/admin',
+      template: '<admin> </admin>',
+    },
+    {
+      name: 'dashboard',
+      url: '/dashboard',
+      template: '<dashboard> </dashboard>',
     },
   ]
 
@@ -22,5 +27,12 @@ angular.module('demoApp', [uiRouter, marked])
 }])
 
 require('./service/auth-service.js')
+require('./service/page-service.js')
+
+require('./container/admin');
 require('./container/landing')
+require('./container/dashboard')
+
 require('./component/login')
+require('./component/page-upload')
+require('./component/page-item')

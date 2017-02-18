@@ -11,14 +11,6 @@ require('angular').module('demoApp')
     this.$onInit = () => {
       this.content = '# cool\n* wat\n* wart' 
 
-      this.loginUser = {email: '', password: ''}
-      this.loginHandleSubmit = () => {
-        authService.login(this.loginUser)
-        .then(token => {
-          alert(`TOKEN ${token}`)
-        })
-        .catch($log.error)
-      }
     }
   }],
 })
