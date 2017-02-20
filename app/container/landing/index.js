@@ -1,5 +1,7 @@
 'use strict'
 
+require('./_landing.scss')
+
 require('angular').module('demoApp')
 .component('landing', {
   template: require('./landing.html'),

@@ -1,0 +1,44 @@
+@import  "../../style/_theme.scss";
+
+.landing {
+  nav {
+    background: $c-black;
+    list-style: none;
+    background: url('../../assets/smiley.png');
+    background-size: 50px 50px;
+
+    h1 {
+      color: $c-black;
+      padding-top: $s-pad;
+      margin-left: $s-pad;
+      text-shadow: -3px -4px $c-error;
+      text-decoration: wavy;
+      &:hover {
+        text-shadow: -3px -4px $c-primary;
+      }
+    }
+
+    ul {
+      display: flex;
+      margin: 0px;
+      padding: $s-pad;
+      justify-content: flex-start;
+    }
+
+    li {
+      display: inline-block;
+      width: auto;
+      margin: 0px;
+      margin-left: $s-pad;
+      padding: ($s-pad / 2) $s-pad;
+
+      font-size: 1em;
+      background: $c-white;
+
+      border: 2px solid $c-black;
+      &:hover {
+        background-color: $c-primary;
+      }
+    }
+  }
+}

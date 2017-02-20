@@ -22,6 +22,9 @@ module.exports = {
     path: `${__dirname}/build`,
     filename: '[hash].js',
   },
+  devServer: {
+    historyApiFallback: true,
+  },
   module: {
     rules: [
       {
