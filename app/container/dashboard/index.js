@@ -5,7 +5,7 @@ require('./_dashboard.scss')
 require('angular').module('demoApp')
 .component('dashboard', {
   template: require('./dashboard.html'),
-  controller: ['$log', 'pageService', '$window', function($log, pageService, $window){
+  controller: ['$log', 'pageService', '$window', 'clipboard', function($log, pageService, $window, clipboard){
     this.$onInit = () => {
       this.pages = [];
 
@@ -40,6 +40,10 @@ require('angular').module('demoApp')
           this.pageSelectSelected = this.pages[0]
         })
         .catch($log.error)
+      }
+
+      this.handleCopy = (page) => {
+        clipboard.copyText(`/#!/page/${this.pageSelectSelected.id}`);
       }
 
       pageService.fetchAll()

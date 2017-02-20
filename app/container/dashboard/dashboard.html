@@ -14,6 +14,12 @@
     new 
   </button>
 
+  <button 
+    class="btn-copy"
+    ng-click="$ctrl.handleCopy()">
+    copy url 
+  </button>
+
 
   <button 
     class="btn-del"
@@ -29,11 +35,5 @@
     page="$ctrl.pageEditorPage" 
     handle-submit="$ctrl.pageEditorHandleSubmit">
   </page-editor>
-
-  <span
-    class="btn-copy"
-    ng-click="$ctrl.handleCopy($ctrl.pageSelectSelected)">
-    /#!/?page={{ $ctrl.pageSelectSelected.id }}
-  </span>
 
 </div>

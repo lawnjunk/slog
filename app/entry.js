@@ -6,11 +6,12 @@ require('./style/main.scss')
 
 const angular = require('angular')
 
-const ngAnimate = require('angular-animate');
+const ngAnimate = require('angular-animate')
+const clipboard = require('angular-clipboard')
 const uiRouter = require('angular-ui-router')
 const marked = require('angular-marked')
 
-angular.module('demoApp', [uiRouter, marked, 'ngAnimate'])
+angular.module('demoApp', [uiRouter, marked, clipboard.name, 'ngAnimate'])
 .config(['$stateProvider', '$urlRouterProvider', function($stateProvider, $urlRouterProver){
   $urlRouterProver.when('', '/')
 
