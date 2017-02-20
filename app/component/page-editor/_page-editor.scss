@@ -19,4 +19,33 @@
     display: inline-block;
     width: auto;
   }
+
+  input[type="checkbox"]  {
+    display: none;
+  }
+
+  input[type="checkbox"] + label{
+    @extends input;
+    margin-left: $s-pad;
+    margin-bottom: $s-pad;
+    font-size: 1em;
+    font-family: monospace;
+    font-style: normal;
+    padding: ($s-pad * 0.6) $s-pad ;
+    background: $c-error;
+    &::before {
+      content: "show in nav";
+    }
+  }
+
+  input[type="checkbox"]:checked + label{
+    background: $c-success;
+    &::before {
+    text-align: center;
+      content: "hide from nav";
+      margin-left: auto;
+      margin-right: auto;
+    }
+  }
+
 }

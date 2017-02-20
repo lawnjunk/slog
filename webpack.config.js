@@ -25,17 +25,21 @@ module.exports = {
   module: {
     rules: [
       {
-        test: /\.js/,
+        test: /\.js$/,
         exclude: /node_modules/,
         loader: 'babel-loader',
       },
       {
-        test: /\.scss/,
+        test: /\.scss$/,
         loader: ExtractText.extract(['css-loader', 'sass-loader']),
       },
       {
-        test: /\.html/,
+        test: /\.html$/,
         loader: 'html-loader',
+      },
+      {
+        test: /\.png$/,
+        loader: 'url-loader',
       },
     ],
   },

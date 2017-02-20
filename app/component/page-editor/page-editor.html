@@ -4,8 +4,8 @@
     ng-submit="$ctrl.handleSubmit($ctrl.page)">
     <textarea ng-model="$ctrl.page.content" placeholder="content"></textarea>
     <input ng-model="$ctrl.page.title" placeholder="title">
-    <label> nav: </label>
-    <input type="checkbox" ng-model="$ctrl.page.showInNav">
+    <input id="show-in-nav-checkbox" type="checkbox" ng-model="$ctrl.page.showInNav">
+    <label for="show-in-nav-checkbox"> </label>
     <button> submit </button>
   </form>
 </div>
