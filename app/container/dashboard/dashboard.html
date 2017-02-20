@@ -8,16 +8,17 @@
   </page-select>
 
   <button 
+    class="btn-new"
+    ng-click="$ctrl.handleNew()">
+    new 
+  </button>
+
+  <button 
     class="btn-del"
     ng-click="$ctrl.handleDelete($ctrl.pageEditorPage)">
     del 
   </button>
 
-  <button 
-    class="btn-new"
-    ng-click="$ctrl.handleNew()">
-    new 
-  </button>
 
   <div class="marked"
     marked="$ctrl.pageEditorPage.content"> </div>

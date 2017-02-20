@@ -5,10 +5,12 @@ console.log('hello world')
 require('./style/main.scss')
 
 const angular = require('angular')
+
+const ngAnimate = require('angular-animate');
 const uiRouter = require('angular-ui-router')
 const marked = require('angular-marked')
 
-angular.module('demoApp', [uiRouter, marked])
+angular.module('demoApp', [uiRouter, marked, 'ngAnimate'])
 .config(['$stateProvider', '$urlRouterProvider', function($stateProvider, $urlRouterProver){
   $urlRouterProver.when('', '/admin')
 

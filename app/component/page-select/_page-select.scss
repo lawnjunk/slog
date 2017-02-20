@@ -12,10 +12,20 @@
   float:  left;
   z-index: 100;
 
+  .ng-hide {
+    font-size: 0;
+  }
+
+  .ng-hide-add,
+  .ng-hide-remove {
+    transition: all linear 300ms;
+  }
+
   li {
     margin: 0px;
     color: $c-black;
     font-style: bolder;
+    height: auto;
 
     &:hover {
       background-color: $c-grey;
@@ -23,3 +33,4 @@
     }
   }
 }
+

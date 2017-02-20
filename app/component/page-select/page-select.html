@@ -1,7 +1,7 @@
   <ul class="page-select">
     <li 
        ng-repeat="item in $ctrl.pages track by $index"
-       ng-if="$ctrl.showAll || $ctrl.selected == item"
+       ng-show="$ctrl.showAll || $ctrl.selected == item"
        ng-click="$ctrl.handleSelect(item)">
         {{ item.title }}
     </li>
