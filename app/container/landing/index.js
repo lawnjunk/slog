@@ -2,15 +2,28 @@
 
 require('angular').module('demoApp')
 .component('landing', {
-  template: `<div>
-  <h2> landing </h2>
-  <div marked="$ctrl.content"> # cool beans </div> 
-  <login user="$ctrl.loginUser" handle-submit="$ctrl.loginHandleSubmit"> </login>
-  </div>`,
-  controller: ['$log', 'authService', function($log, authService){
+  template: require('./landing.html'),
+  controller: ['$log','$location', '$stateParams', 'pageService',  function($log, $location, $stateParams, pageService ){
     this.$onInit = () => {
-      this.content = '# cool\n* wat\n* wart' 
+      this.selected = null;
+      this.pages = []
 
+      pageService.fetchAll()
+      .then(pages => {
+        this.pages = pages
+        this.selected = this.pages[0]
+
+        let pageID = $stateParams.id
+        if(pageID) {
+          this.selected = this.pages.reduce((selected, page) => {
+            if(page.id == pageID)
+              return page;
+            return selected;
+          }, this.selected)
+        }
+      })
+      .catch($log.error)
     }
+
   }],
 })

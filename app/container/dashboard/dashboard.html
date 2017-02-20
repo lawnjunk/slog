@@ -7,11 +7,13 @@
      handle-select="$ctrl.pageSelectHandleSelect">
   </page-select>
 
+
   <button 
     class="btn-new"
     ng-click="$ctrl.handleNew()">
     new 
   </button>
+
 
   <button 
     class="btn-del"
@@ -27,5 +29,11 @@
     page="$ctrl.pageEditorPage" 
     handle-submit="$ctrl.pageEditorHandleSubmit">
   </page-editor>
+
+  <span
+    class="btn-copy"
+    ng-click="$ctrl.handleCopy($ctrl.pageSelectSelected)">
+    /#!/?page={{ $ctrl.pageSelectSelected.id }}
+  </span>
 
 </div>

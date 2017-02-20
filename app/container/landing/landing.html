@@ -1,0 +1,15 @@
+<div class="landing">
+
+  <nav>
+    <ul>
+      <li 
+        ng-repeat="item in $ctrl.pages | navFilter"
+        ng-click="$ctrl.selected = item">
+        {{ item.title }}
+      </li>
+    </ul>
+  </nav>
+
+  <div marked="$ctrl.selected.content">
+  </div>
+</div>

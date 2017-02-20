@@ -5,7 +5,7 @@ require('./_dashboard.scss')
 require('angular').module('demoApp')
 .component('dashboard', {
   template: require('./dashboard.html'),
-  controller: ['$log', 'pageService', function($log, pageService){
+  controller: ['$log', 'pageService', '$window', function($log, pageService, $window){
     this.$onInit = () => {
       this.pages = [];
 

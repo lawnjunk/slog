@@ -12,7 +12,7 @@ const marked = require('angular-marked')
 
 angular.module('demoApp', [uiRouter, marked, 'ngAnimate'])
 .config(['$stateProvider', '$urlRouterProvider', function($stateProvider, $urlRouterProver){
-  $urlRouterProver.when('', '/admin')
+  $urlRouterProver.when('', '/')
 
   let routes = [
     {
@@ -25,6 +25,16 @@ angular.module('demoApp', [uiRouter, marked, 'ngAnimate'])
       url: '/dashboard',
       template: '<dashboard> </dashboard>',
     },
+    {
+      name: 'landing',
+      url: '/',
+      template: '<landing> </landing>',
+    },
+    {
+      name: 'page',
+      url: '/page/:id',
+      template: '<landing> </landing>',
+    },
   ]
 
   routes.forEach(route => $stateProvider.state(route))
@@ -33,11 +43,12 @@ angular.module('demoApp', [uiRouter, marked, 'ngAnimate'])
 require('./service/auth-service.js')
 require('./service/page-service.js')
 
+require('./filter/nav-filter.js')
+
 require('./container/admin');
 require('./container/landing')
 require('./container/dashboard')
 
 require('./component/login')
 require('./component/page-editor')
-require('./component/page-item')
 require('./component/page-select')
