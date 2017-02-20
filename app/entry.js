@@ -2,6 +2,8 @@
 
 console.log('hello world')
 
+require('./style/main.scss')
+
 const angular = require('angular')
 const uiRouter = require('angular-ui-router')
 const marked = require('angular-marked')
@@ -34,5 +36,6 @@ require('./container/landing')
 require('./container/dashboard')
 
 require('./component/login')
-require('./component/page-upload')
+require('./component/page-editor')
 require('./component/page-item')
+require('./component/page-select')

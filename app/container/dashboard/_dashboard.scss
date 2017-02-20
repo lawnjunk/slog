@@ -1,0 +1,28 @@
+@import "../../style/_theme.scss";
+
+.dashboard {
+  position: relative;
+  .marked {
+    height: 40vh;
+    border: 2px solid $c-black;
+    overflow: scroll;
+    padding: $s-pad;
+  }
+
+  .btn-new, .btn-del {
+    display: inline-block;
+    padding: $s-pad;
+    margin-left: $s-pad;
+    border: none;
+    width: auto;
+    float: right;
+  }
+
+  .btn-del {
+    background-color: $c-error;
+  }
+
+  .btn-new {
+    background-color: $c-success;
+  }
+}

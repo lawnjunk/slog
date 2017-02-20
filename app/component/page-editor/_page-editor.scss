@@ -1,0 +1,22 @@
+@import "../../style/_theme.scss";
+
+.page-editor {
+  textarea {
+    height: 25vh;
+    font-size: 1em;
+    background-color: $c-black;
+    color: $c-white;
+    padding: $s-pad;
+  }
+
+  input {
+    display: inline-block;
+    width: 50%;
+    padding: $s-pad;
+  }
+
+  label, input[type="checkbox"]  {
+    display: inline-block;
+    width: auto;
+  }
+}

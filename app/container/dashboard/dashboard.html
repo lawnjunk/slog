@@ -1,17 +1,30 @@
 <div class="dashboard">
-  <h3> dashboard </h3>
-  <ul>
-    <page-item 
-      ng-repeat="item in $ctrl.pages track by $index"
-      page="item"
-      handle-select="$ctrl.itemHandleSelect"
-      handle-delete="$ctrl.itemHandleDelete">
-    </page-item>
-  </ul>
 
-  <page-upload
-    page="$ctrl.uploadPage" 
-    handle-submit="$ctrl.uploadHandleSubmit">
-  </page-upload>
+  <page-select 
+     pages="$ctrl.pages"
+     show-all="$ctrl.pageSelectShowAll"
+     selected="$ctrl.pageSelectSelected"
+     handle-select="$ctrl.pageSelectHandleSelect">
+  </page-select>
+
+  <button 
+    class="btn-del"
+    ng-click="$ctrl.handleDelete($ctrl.pageEditorPage)">
+    del 
+  </button>
+
+  <button 
+    class="btn-new"
+    ng-click="$ctrl.handleNew()">
+    new 
+  </button>
+
+  <div class="marked"
+    marked="$ctrl.pageEditorPage.content"> </div>
+
+  <page-editor
+    page="$ctrl.pageEditorPage" 
+    handle-submit="$ctrl.pageEditorHandleSubmit">
+  </page-editor>
 
 </div>

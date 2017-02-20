@@ -1,0 +1,13 @@
+@import "../../style/_theme.scss";
+
+.page-editor {
+  textarea {
+    font-size: 1em;
+    background-color: $c-black;
+    color: $c-white;
+  }
+
+  label {
+    display: inline-block;
+  }
+}

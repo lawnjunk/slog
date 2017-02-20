@@ -1,8 +1,10 @@
 'use strict'
 
+require('./_page-editor.scss')
+
 require('angular').module('demoApp')
-.component('pageUpload', {
-  template: require('./page-upload.html'),
+.component('pageEditor', {
+  template: require('./page-editor.html'),
   bindings: {
     page: '<',
     handleSubmit: '<',
