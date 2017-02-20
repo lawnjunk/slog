@@ -26,12 +26,13 @@
 
   input[type="checkbox"] + label{
     @extends input;
-    margin-left: $s-pad;
+    width: 49% ;
+    float: right;
     margin-bottom: $s-pad;
     font-size: 1em;
     font-family: monospace;
     font-style: normal;
-    padding: ($s-pad * 0.6) $s-pad ;
+    padding: ($s-pad * 0.5) $s-pad ;
     background: $c-error;
     &::before {
       content: "show in nav";
