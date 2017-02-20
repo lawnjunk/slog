@@ -4,7 +4,7 @@
     <ul>
       <li 
         ng-repeat="item in $ctrl.pages | navFilter"
-        ng-click="$ctrl.selected = item">
+        ng-click="$ctrl.handleSelect(item)">
         {{ item.title }}
       </li>
     </ul>

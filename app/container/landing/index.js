@@ -10,12 +10,16 @@ require('angular').module('demoApp')
       this.selected = null;
       this.pages = []
 
+      this.handleSelect = (page) => {
+        $location.path(`/page/${page.id}`)
+      }
+
       pageService.fetchAll()
       .then(pages => {
         this.pages = pages
-        this.selected = this.pages[0]
-
         let pageID = $stateParams.id
+        if(!pageID)
+          this.handleSelect(this.pages[0])
         if(pageID) {
           this.selected = this.pages.reduce((selected, page) => {
             if(page.id == pageID)
@@ -26,6 +30,5 @@ require('angular').module('demoApp')
       })
       .catch($log.error)
     }
-
   }],
 })
